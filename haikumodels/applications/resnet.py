@@ -10,7 +10,7 @@ from ..ops import BatchNorm
 
 hk.BatchNorm = BatchNorm
 
-BASE_URL = "URL Required"
+BASE_URL = "https://github.com/abarcel/haikumodels/releases/download/v0.1/"
 
 
 class block1(hk.Module):

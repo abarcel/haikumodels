@@ -11,7 +11,7 @@ from ..ops import BatchNorm, SeparableConv2D
 hk.BatchNorm = BatchNorm
 hk.SeparableConv2D = SeparableConv2D
 
-URL = "URL Required"
+URL = "https://github.com/abarcel/haikumodels/releases/download/v0.1/"
 
 
 class entry_flow_1(hk.Module):
