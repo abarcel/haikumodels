@@ -11,7 +11,8 @@ from ..ops import BatchNorm, SeparableConv2D
 hk.BatchNorm = BatchNorm
 hk.SeparableConv2D = SeparableConv2D
 
-URL = "https://github.com/abarcel/haikumodels/releases/download/v0.1/"
+URL = ("https://github.com/abarcel/haikumodels/releases/download/v0.1/"
+       "xception_weights_tf_dim_ordering_tf_kernels.h5")
 
 
 class entry_flow_1(hk.Module):
