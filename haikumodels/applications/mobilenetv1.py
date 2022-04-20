@@ -34,7 +34,7 @@ class block(hk.Module):
     self.depthwise_conv = hk.DepthwiseConv2D(
         channel_multiplier=channel_multiplier,
         kernel_shape=3,
-        padding="SAME" if stride == (1 or (1, 1)) else "VALID",
+        padding="SAME" if stride in [1, (1, 1)] else "VALID",
         stride=stride,
         with_bias=False,
         name="depthwise_conv",
@@ -64,7 +64,7 @@ class block(hk.Module):
   def __call__(self, inputs: jnp.ndarray, is_training: bool) -> jnp.ndarray:
     out = inputs
 
-    if self.stride == (2 or (2, 2)):
+    if self.stride in [2, (2, 2)]:
       out = jnp.pad(
           out,
           ((0, 0), (0, 1), (0, 1), (0, 0)),
@@ -231,7 +231,7 @@ class MobileNetV1(hk.Module):
     if self.weights == "imagenet":
       net_shape = 224
       for size in self.default_sizes:
-        if size == (inputs.shape[1] or inputs.shape[2]):
+        if size in [inputs.shape[1], inputs.shape[2]]:
           net_shape = size
       model_name = "mobilenet_%s_%d_tf.h5" % (alpha_text, net_shape)
       ckpt_file = utils.download(self.ckpt_dir, BASE_URL + model_name)
