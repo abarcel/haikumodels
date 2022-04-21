@@ -164,7 +164,7 @@ class MobileNetV1(hk.Module):
     self.min_size = 32
     self.include_top = include_top
     self.weights = weights
-    self.alpha = make_divisible(alpha, 0.25)
+    self.alpha = alpha
     self.channel_multiplier = channel_multiplier
     self.dropout_rate = dropout_rate
     self.pooling = pooling
@@ -313,15 +313,6 @@ class MobileNetV1(hk.Module):
         out = jnp.max(out, axis=(1, 2))
 
     return out
-
-
-def make_divisible(v, divisor, min_value=None):
-  if min_value is None:
-    min_value = divisor
-  new_v = max(min_value, int(v + divisor / 2) // divisor * divisor)
-  if new_v < 0.9 * v:
-    new_v += divisor
-  return new_v
 
 
 def preprocess_input(x):
